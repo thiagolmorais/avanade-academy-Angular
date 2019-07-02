@@ -1,7 +1,7 @@
 <div [ngStyle]="{ background: contador < 4 ? 'red' : 'green' }"> O contador é: {{ contador }}</div>
 <div [ngClass]="{ custom: contador > 4 }"> O contador é: {{ contador }}</div>
 
-<div *ngIf="contador > 5. else menor">Contador passou de 5</div>
+<div *ngIf="contador > 5; else menor">Contador passou de 5</div>
 
 <ng-template #menor>
   <div>Contador menor que 5</div>
