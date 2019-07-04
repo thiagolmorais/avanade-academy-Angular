@@ -1,0 +1,36 @@
+<!-- <input type="text" [(ngModel)]="email" #campoEmail="ngModel" minlength="4" required email>
+{{ email }}
+
+<div *ngIf="campoEmail.errors && campoEmail.touched">
+    <div *ngIf="campoEmail?.errors.minlength">E-mail inválido!</div>
+    <div *ngIf="campoEmail.invalid">E-mail inválido!</div>
+    <div *ngIf="campoEmail?.errors.required">Campo é obrigatório!</div>
+</div> -->
+
+<form #form="ngForm">
+    {{ todo | json }}
+    <div>
+        <input type="text" [(ngModel)]="todo.id" placeholder="ID" name="id">
+        {{ todo.id }}
+    </div>
+    <div>
+        <input type="text" [(ngModel)]="todo.title" #title="ngModel" placeholder="Título" name="title" minlength="4" required>
+        <div *ngIf="title.errors && title.touched">
+            <div *ngIf="title?.erros.required">Campo é obrigatório!</div>
+        </div>
+        {{ todo.title }}
+    </div>
+    <div>
+        <input type="text" [(ngModel)]="todo.description" placeholder="Descrição" name="description">
+        {{ todo.description }}
+    </div>
+    <div>
+        <input type="checkbox" [(ngModel)]="todo.finished" name="finished">
+        {{ todo.finished }}
+    </div>
+    <div>
+        <input type="date" [(ngModel)]="todo.date" placeholder="Data" name="date">
+        {{ todo.date }}
+    </div>
+    <button (click)="eniviar()" [disabled]="form.invalid">Enviar</button>
+</form>

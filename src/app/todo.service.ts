@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Todo } from 'src/typings/todo';
+import { Router } from '@angular/router';
 
 @Injectable({
  providedIn: 'root'
@@ -24,6 +25,10 @@ export class TodoService {
 
  diminuir() {
    this.pContador.next(this.pContador.value - 1);
+ }
+
+ adicionaTodo(todo: Todo){
+   return this.httpClient.post('http://localhost:3000/todos', todo);
  }
 
 }
