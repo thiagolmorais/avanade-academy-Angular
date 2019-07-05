@@ -1,0 +1,29 @@
+<form #form="ngForm">
+    <div>
+        <input [(ngModel)]="email"  #campoEmail="ngModel" type="text" name="email" id="email" placeholder="Email" required email>
+    </div>
+    <div>
+        <input [(ngModel)]="password" #campoPassword="ngModel" type="password" name="password" id="password" placeholder="Senha" minlength="6" required>
+    </div>
+    <div>
+        <input [(ngModel)]="passwordConfirm" #campoPasswordConfirm="ngModel" type="password" name="passwordConfirm" id="passwordConfirm" placeholder="Confirmação de Senha" minlength="6" required>
+    </div>
+    <div>
+        <button (click)="register()" [disabled]="form.invalid">Registrar</button>
+    </div>
+</form>
+
+<div *ngIf="campoEmail.errors && campoEmail.touched">
+    <div *ngIf="campoEmail.invalid">E-mail inválido!</div>
+    <div *ngIf="campoEmail?.errors.required">Campo email é obrigatório!</div>
+</div>
+
+<div *ngIf="campoPassword.errors && campoPassword.touched">
+    <div *ngIf="campoPassword?.errors.minlength">Senha deve ter no minimo 6 digitos!</div>
+    <div *ngIf="campoPassword?.errors.required">Campo senha é obrigatório!</div>
+</div>
+
+<div *ngIf="campoPasswordConfirm.errors && campoPasswordConfirm.touched">
+    <div *ngIf="campoPasswordConfirm?.errors.minlength">A confirmação de Senha deve ter no minimo 6 digitos!</div>
+    <div *ngIf="campoPasswordConfirm?.errors.required">Campo confirmar senha é obrigatório!</div>
+</div>

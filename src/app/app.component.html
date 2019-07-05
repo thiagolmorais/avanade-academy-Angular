@@ -1,8 +1,14 @@
 <app-contador></app-contador>
 <div class="container">{{ contador }}</div>
 <app-contador-botoes></app-contador-botoes>
+<div *ngIf="email !== ''">
+    Olá, {{ email }}
+    <button (click)="logout()">Sair</button>
+</div>
 <a routerLink="/">Home</a> |
-<a routerLink="/todos">Todos</a> |
-<a routerLink="/cep">Cep</a> |
-<a routerLink="/add-todo">Add-Todo</a>
+<a routerLink="todos">Todos</a> |
+<a routerLink="cep">Cep</a> |
+<a routerLink="todos/add-todo">Add-Todo</a> |
+<a routerLink="auth/login">Login</a> |
+<a routerLink="auth/register">Register</a>
 <router-outlet></router-outlet>
