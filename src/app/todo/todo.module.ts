@@ -10,7 +10,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   { path: '', component: ListaTodosComponent },
-  { path: 'add-todo', component: AddTodoComponent }
+  { path: 'add-todo', component: AddTodoComponent },
+  { path: ':id', component: AddTodoComponent },
 ]
 
 @NgModule({

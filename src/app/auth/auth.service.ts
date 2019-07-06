@@ -34,4 +34,8 @@ export class AuthService {
       idToken: token
     });
   }
+
+  updateAccount(){
+
+  }
 }

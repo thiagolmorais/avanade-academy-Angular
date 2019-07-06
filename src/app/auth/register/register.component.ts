@@ -21,7 +21,13 @@ export class RegisterComponent implements OnInit {
       alert('Senhas divergentes');
       return;
     }
-    this.authService.createAccount(this.email, this.password).subscribe((value) => {
+    this.authService.createAccount(this.email, this.password).subscribe((value: any) => {
+      localStorage.setItem('token', value.idToken);
+
+      this.authService.setUser({
+        id: value.localId,
+        email: value.email,
+      });
       alert('Usuário criado com sucesso!');
     });
   }

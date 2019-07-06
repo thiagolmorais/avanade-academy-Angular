@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TodoService } from './todo/todo.service';
 import { map, debounceTime } from 'rxjs/operators'
 import { AuthService } from './auth/auth.service';
+import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +13,9 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent implements OnInit{
 
   contador = 0;
-  email = '';
+  user$: Observable<any>;
 
-  constructor(public todoService: TodoService, private authService: AuthService) { }
+  constructor(public todoService: TodoService, private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
     const token = localStorage.getItem('token');
@@ -21,19 +23,12 @@ export class AppComponent implements OnInit{
     if (token) {
       this.authService.verifyToken(token).subscribe((v: any) => {
         this.authService.setUser({
+          id: v.users[0].localId,
           email: v.users[0].email,
         });
       });
     }
-    this.authService.currentUser.subscribe((v) => {
-      console.log(v)
-      if (v !== null) {
-        this.email = v.email;
-      } else {
-        this.email = '';
-      }
-    });
-    console.log(this.email)
+    this.user$ = this.authService.currentUser;
 
     this.todoService.contador
     .pipe(
@@ -47,5 +42,8 @@ export class AppComponent implements OnInit{
   }
 
   logout() {
+    localStorage.removeItem('token');
+    this.authService.setUser(null);
+    this.router.navigateByUrl('/auth/login');
   }
 }

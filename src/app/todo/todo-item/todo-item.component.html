@@ -4,4 +4,7 @@
     <b>ID: </b> {{ data.id }}
     <b>Finalizado: </b> {{ data.finished | bool}}
     <b>Data: </b> {{ data.date | date: 'dd/MM/yyyy' }}
+
+    <button (click)="editar()">Editar</button>
+    <button (click)="deletar()">Deletar</button>
 </div>
